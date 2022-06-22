@@ -1,0 +1,292 @@
+{
+    "seasons": {
+        "season_one": {
+            "name": "season_one",
+            "contestants": [
+                {
+                    "id": "button",
+                    "competition_name": "Button",
+                    "legal_name": "N/A",
+                    "sex": "N/A",
+                    "age": "N/A",
+                    "height": "N/A",
+                    "residence": "N/A",
+                    "occupation": "N/A",
+                    "competition_placement": "N/A",
+                    "additional_notes": "-N/A",
+                    "official": false,
+                    "image": "season_one/button.png"
+                },
+                {
+                    "id": "calculatory",
+                    "competition_name": "Calculatory",
+                    "legal_name": "Oscar Mayworth",
+                    "sex": "M",
+                    "age": "Adult",
+                    "height": "6'1",
+                    "residence": "New York, NY",
+                    "occupation": "N/A",
+                    "competition_placement": "6th",
+                    "additional_notes": "-Homeless",
+                    "official": true,
+                    "image": "season_one/calculatory.png"
+                },
+                {
+                    "id": "caney",
+                    "competition_name": "Caney",
+                    "legal_name": "N/A",
+                    "sex": "N/A",
+                    "age": "N/A",
+                    "height": "N/A",
+                    "residence": "N/A",
+                    "occupation": "N/A",
+                    "competition_placement": "N/A",
+                    "additional_notes": "-N/A",
+                    "official": false,
+                    "image": "season_one/caney.png"
+                },
+                {
+                    "id": "scarfy",
+                    "competition_name": "Scarfy",
+                    "legal_name": "N/A",
+                    "sex": "N/A",
+                    "age": "N/A",
+                    "height": "N/A",
+                    "residence": "N/A",
+                    "occupation": "N/A",
+                    "competition_placement": "N/A",
+                    "additional_notes": "-N/A",
+                    "official": false,
+                    "image": "season_one/scarfy.png"
+                },
+                {
+                    "id": "toothpaste",
+                    "competition_name": "Toothpaste",
+                    "legal_name": "Julien Beaumont",
+                    "sex": "M",
+                    "age": "Adult",
+                    "height": "6'2",
+                    "residence": "Limoges, France",
+                    "occupation": "Independent Filmmaker",
+                    "competition_placement": "N/A",
+                    "additional_notes": "-N/A",
+                    "official": true,
+                    "image": "season_one/toothpaste.png"
+                },
+                {
+                    "id": "whistle",
+                    "competition_name": "Whistle",
+                    "legal_name": "Max Schwartz",
+                    "sex": "M",
+                    "age": "Adult",
+                    "height": "3'8",
+                    "residence": "Pomeroy, OH",
+                    "occupation": "Systems Analyst",
+                    "competition_placement": "N/A",
+                    "additional_notes": "-Autophobic",
+                    "official": true,
+                    "image": "season_one/whistle.png"
+                }
+            ]
+        },
+        "season_two": {
+            "groups":{
+                "group_one":{
+                    "name": "season_two group_one",
+                    "contestants":[
+                        {
+                            "id": "backpack",
+                            "competition_name": "Backpack",
+                            "legal_name": "Liam Plecak",
+                            "sex": "M",
+                            "age": "Adult",
+                            "height": "5'7",
+                            "residence": "San Francisco, CA",
+                            "occupation": "Telemarketer",
+                            "competition_placement":"12th",
+                            "additional_notes": "-N/A",
+                            "official": true,
+                            "image": "season_two/group_one/backpack.png"
+                        },
+                        {
+                            "id": "magazine",
+                            "competition_name": "Magazine",
+                            "legal_name": "Taylor Nolan",
+                            "sex": "F",
+                            "age": "Teen",
+                            "height": "5'11",
+                            "residence": "Toledo, OH",
+                            "occupation": "Retail Cashier",
+                            "competition_placement": "17th",
+                            "additional_notes": "-Separated Parents",
+                            "official": true,
+                            "image": "season_two/group_one/magazine.png"
+                        },
+                        {
+                            "id": "moldy",
+                            "competition_name": "Moldy",
+                            "legal_name": "Charlotte Stern",
+                            "sex": "F",
+                            "age": "Adult",
+                            "height": "5'2",
+                            "residence": "Brunswick, GA",
+                            "occupation": "Freight Handler",
+                            "competition_placement": "N/A",
+                            "additional_notes": "-Served 3 months jail time (petty theft)",
+                            "official": true,
+                            "image": "season_two/group_one/moldy.png"
+                        },
+                        {
+                            "id": "scenty",
+                            "competition_name": "Scenty",
+                            "legal_name": "Amelia Euler",
+                            "sex": "F",
+                            "age": "Adult",
+                            "height": "4'1",
+                            "residence": "Yakima, WA",
+                            "occupation": "Yoga Instructor",
+                            "competition_placement": "N/A",
+                            "additional_notes": "-N/A",
+                            "official": true,
+                            "image": "season_two/group_one/scenty.png"
+                        },
+                        {
+                            "id": "soda_bottle",
+                            "competition_name": "Soda Bottle",
+                            "legal_name": "Bryce Hansen",
+                            "sex": "M",
+                            "age": "Adult",
+                            "height": "6'0",
+                            "residence": "Bridgeport, CT",
+                            "occupation": "Fast Food Worker",
+                            "competition_placement": "13th",
+                            "additional_notes": "-Thalassophobic",
+                            "official": true,
+                            "image": "season_two/group_one/soda bottle.png"
+                        },
+                        {
+                            "id": "tomato",
+                            "competition_name": "tomato",
+                            "legal_name": "Charlie",
+                            "sex": "M",
+                            "age": "Baby",
+                            "height": "1'8",
+                            "residence": "N/A",
+                            "occupation": "N/A",
+                            "competition_placement": "18th",
+                            "additional_notes": "-N/A",
+                            "official": false,
+                            "image": "season_two/group_one/tomato.png"
+                        }
+                    ]   
+                },
+                "group_two": {
+                    "name": "season_two group_two",
+                    "contestants": [
+                        {
+                            "id": "airline_food",
+                            "competition_name": "Airline Food",
+                            "competition_placement": "N/A",
+                            "additional_notes": "-N/A",
+                            "official": true,
+                            "image": "image_not_found.png"
+                        },
+                        {
+                            "id": "bassy",
+                            "competition_name": "Bassy",
+                            "competition_placement": "11th",
+                            "additional_notes": "-N/A",
+                            "official": true,
+                            "image": "season_two/group_two/bassy.png"
+                        },
+                        {
+                            "id": "contact_lens",
+                            "competition_name": "Contact Lens",
+                            "competition_placement": "N/A",
+                            "additional_notes": "-N/A",
+                            "official": true,
+                            "image": "image_not_found.png"
+                        },
+                        {
+                            "id": "subway_seat",
+                            "competition_name": "Subway Seat",
+                            "competition_placement": "N/A",
+                            "additional_notes": "-N/A",
+                            "official": true,
+                            "image": "image_not_found.png"
+                        },
+                        {
+                            "id": "tray",
+                            "competition_name": "Tray",
+                            "competition_placement": "N/A",
+                            "additional_notes": "-N/A",
+                            "official": false,
+                            "image": "image_not_found.png"
+                        },
+                        {
+                            "id": "whippy_creamy",
+                            "competition_name": "Whippy Creamy",
+                            "competition_placement": "N/A",
+                            "additional_notes": "-N/A",
+                            "official": false,
+                            "image": "image_not_found.png"
+                        }
+                    ]
+                },
+                "group_three": {
+                    "name": "season_two group_three",
+                    "contestants": [
+                        {
+                            "id": "abstracty",
+                            "competition_name": "Abstracty",
+                            "competition_placement": "16th",
+                            "additional_notes": "-N/A",
+                            "official": false,
+                            "image": "image_not_found.png"
+                        },
+                        {
+                            "id": "atom",
+                            "competition_name": "Atom",
+                            "competition_placement": "N/A",
+                            "additional_notes": "-N/A",
+                            "official": false,
+                            "image": "image_not_found.png"
+                        },
+                        {
+                            "id": "circle",
+                            "competition_name": "Circle",
+                            "competition_placement": "N/A",
+                            "additional_notes": "-N/A",
+                            "official": false,
+                            "image": "image_not_found.png"
+                        },
+                        {
+                            "id": "folder",
+                            "competition_name": "Folder",
+                            "competition_placement": "N/A",
+                            "additional_notes": "-N/A",
+                            "official": false,
+                            "image": "image_not_found.png"
+                        },
+                        {
+                            "id": "stone",
+                            "competition_name": "Stone",
+                            "competition_placement": "15th",
+                            "additional_notes": "-N/A",
+                            "official": false,
+                            "image": "image_not_found.png"
+                        },
+                        {
+                            "id": "texty",
+                            "competition_name": "Texty",
+                            "competition_placement": "14th",
+                            "additional_notes": "-N/A",
+                            "official": false,
+                            "image": "image_not_found.png"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

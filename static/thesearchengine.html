@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>The Search Engine™</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+                        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LTZV8P2Z7Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LTZV8P2Z7Q');
+</script>
+        <style>
+            html, :root{
+                width: 100%;
+                height: 100%;
+            }
+            body{
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                font-family: sans-serif;
+                font-weight: bolder;
+                background-color: #ececec;
+            }
+            .container-parent{
+                display: flex;
+                width: 100%;
+                height: 100%;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+            .logo{
+                width: 500px;
+                display: block;
+            }
+            .search-box{
+                background-color: #ffffff;
+                padding: 5px;
+                margin-top: 30px;
+                width: 800px;
+                display: flex;
+                box-shadow: #e0e0e0 0px 10px;
+            }
+            @media only screen and (max-width: 840px) {
+                .search-box {
+                    width: calc(100vw - 40px);
+                }
+                .logo{
+                    width: 60vw;
+                }
+            }
+            .search-box input{
+                background-color: #ffffff;
+                width: 100%;
+                font-size: 1.75em;
+                font-family: sans-serif;
+                font-weight: bolder;
+                border: none;
+                display: inline-block;
+            }
+            .search-box input:focus{
+                outline:none;
+            }
+            .search-box button{
+                border: none;
+                background-color: white;
+                margin: 0;
+                padding: 0;
+                display: inline-block;
+                width: 42px;
+                height: 42px;
+            }
+            .search-box button:focus{
+                outline: none;
+            }
+            .search-box button:hover{
+                cursor: pointer;
+            }
+            .search-box button img{
+                display: inline-block;
+            }
+            .search-box form{
+                width: 100%;
+                display: flex;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <div class="container-parent">
+            <div class="container">
+                <img src="/images/thesearchengine/logo.png" class="logo">
+            </div>
+            <div class="container">
+                <div class="search-box">
+                    <form>
+                        <input autofocus>
+                        <button><img src="/images/thesearchengine/search-icon.png"></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <img style="position: fixed; top: 0px; right: 0px; width: 150px;" src="/images/thesearchengine/profile-thing.png">
+        <script>
+            document.querySelector(".search-box form").addEventListener("submit", function(){
+                event.preventDefault();
+                window.location.href = "https://youtu.be/G7nETDRunk0";
+            });
+
+            textyTimer = 0;
+            textyDialogueNum = 0;
+            textyDialogue= [
+                "........",
+                "uhhh this isnt my computer",
+                "where am i?????",
+                "qwertyuiopasdfghjklzxcvbnm",
+                "ok im bored"
+            ];
+            textyTimerTimeThing = 500;
+            //do hacky stuff if firefox
+            tick = 20;
+            if (navigator.userAgent.search("Firefox") != -1){
+                tick = 1;
+                textyTimerTimeThing = 300;
+            }
+            pause = false;
+            daElement = ".search-box input";
+            document.querySelector(daElement).value = "";
+
+            function deleteStuff(time){
+                document.querySelector(daElement).select();
+                    setTimeout(function(){
+                        document.querySelector(daElement).value = "";
+                    }, time);
+            }
+            setInterval(function(){
+                if (textyTimer < textyTimerTimeThing && textyTimer != -1){
+                    textyTimer+= 1;
+                }
+
+                if (document.querySelector(daElement).value != "" && textyTimer < textyTimerTimeThing && textyTimer != -1){
+                    textyTimer = 0;
+                }
+
+                //console.log(textyTimer);
+
+                
+                if (textyTimer == textyTimerTimeThing){
+                    document.querySelector(daElement).focus();
+                    //document.querySelector(daElement).value = textyDialogue[textyDialogueNum]
+                    if (pause == false && document.querySelector(daElement).value.length < textyDialogue[textyDialogueNum].length){
+                        if (Math.floor(Math.random() * ((navigator.userAgent.search("Firefox") != -1) ? 8 : 15)) == 0) document.querySelector(daElement).value += textyDialogue[textyDialogueNum][document.querySelector(daElement).value.length]
+                    }
+                    if (pause == false && document.querySelector(daElement).value.length == textyDialogue[textyDialogueNum].length){
+                        pause = true
+                        setTimeout(function(){
+                            deleteStuff(300);
+                            textyDialogueNum += 1;
+                            if (textyDialogueNum >= textyDialogue.length){
+                                textyTimer = -1;
+                            }
+                            setTimeout(function(){pause = false;},300);
+
+                        },3000);
+                    }
+                    //console.log("awesome")
+                }
+            }, 20);
+
+            function userInteracted(){
+                //console.log("user interacted")
+                if (!(textyTimer == -1 || textyTimer == textyTimerTimeThing)) textyTimer = 0;
+                if (textyTimer == textyTimerTimeThing){
+                    deleteStuff(100);
+                    textyTimer = -1;
+                }
+            }
+
+            window.addEventListener("mousemove", userInteracted);
+            window.addEventListener("keydown", userInteracted);
+        </script>
+    </body>
+</html>
