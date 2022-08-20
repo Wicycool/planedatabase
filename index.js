@@ -61,6 +61,21 @@ function sendGroup(req,res,group, linkThingy){
         font-weight: bold;
         display: inline-block;
     }
+    #code-section{
+        font-family: 'Courier New', monospace;
+        background-color: white;
+        border: solid lightgray 4px; 
+        display: none;
+        padding: 10px;
+        text-align: left;
+        font-size: 24px; 
+        position: fixed; 
+        top: 10px; 
+        left: 0; 
+        line-height: 1.25;
+        width: 580px;
+        margin-left: calc(50vw - (608px / 2));
+    }
     </style>
     </head>
     <body><ul>`
@@ -74,9 +89,44 @@ function sendGroup(req,res,group, linkThingy){
         if (group.name == "season_two group_three"){
             returnVal += `<span id="notice">Notice: This page is considered NON-CANON due to it not appearing in an official episode.</span>`
         }
-        returnVal += `
-    </ul></body></html>
+        returnVal += `</ul>`;
+        if (group.name == "season_two group_one"){
+            returnVal += `<a href="javascript:secret();" style="font-size: 0.5em; color: gray;">secret code</a>`
+    returnVal +=`
+        <div id="code-section">
+def command(history,memory):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;kill = 0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if history.shape[1] >= 2:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if memory or history[1,-1] == 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kill = True<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if history[1,-1] == 0 and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kill = False<br>
+&nbsp;&nbsp;&nbsp;&nbsp;choice = "kill"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if backpack:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;history.shape[1] >= 1 and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command = "end"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;else:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if history.shape[1] >= 1 and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;choice = "N/A"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return command, kill
+</div>
     `
+        returnVal +=`
+        <script>
+            function secret(){
+                document.querySelector("#code-section").style.display = "inline-block";
+            }
+            document.body.onmousedown = function(){
+                document.querySelector("#code-section").style.display = "none";
+            }
+        </script>
+    `
+        }
+
+
+
+
+    returnVal += `</body></html>`
 
     res.status(400)
     res.send(returnVal)

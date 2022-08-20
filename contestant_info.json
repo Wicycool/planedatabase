@@ -159,7 +159,7 @@
                             "height": "6'0",
                             "residence": "Bridgeport, CT",
                             "occupation": "Fast Food Worker",
-                            "competition_placement": "13th",
+                            "competition_placement": "N/A",
                             "additional_notes": "-Thalassophobic",
                             "official": true,
                             "image": "season_two/group_one/soda bottle.png"
@@ -202,9 +202,9 @@
                         {
                             "id": "contact_lens",
                             "competition_name": "Contact Lens",
-                            "competition_placement": "N/A",
+                            "competition_placement": "12th?",
                             "additional_notes": "-N/A",
-                            "official": true,
+                            "official": false,   
                             "image": "image_not_found.png"
                         },
                         {
@@ -255,7 +255,7 @@
                         {
                             "id": "circle",
                             "competition_name": "Circle",
-                            "competition_placement": "N/A",
+                            "competition_placement": "10th?",
                             "additional_notes": "-N/A",
                             "official": false,
                             "image": "image_not_found.png"
@@ -263,7 +263,7 @@
                         {
                             "id": "folder",
                             "competition_name": "Folder",
-                            "competition_placement": "N/A",
+                            "competition_placement": "9th?",
                             "additional_notes": "-N/A",
                             "official": false,
                             "image": "image_not_found.png"
