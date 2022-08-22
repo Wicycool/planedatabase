@@ -109,7 +109,11 @@
         <script>
             document.querySelector(".search-box form").addEventListener("submit", function(){
                 event.preventDefault();
-                window.location.href = "https://youtu.be/G7nETDRunk0";
+                if (document.querySelector(".search-box form input").value == "typing typing typing to make sure this works"){
+                    window.location.href = "/images/owern.png";
+                } else {
+                    window.location.href = "https://youtu.be/G7nETDRunk0";
+                }
             });
 
             textyTimer = 0;

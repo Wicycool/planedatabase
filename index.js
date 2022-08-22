@@ -4,6 +4,8 @@ const app = express()
 const port = 3001
 const contestant_info = require('./contestant_info.json')
 
+print(contestant_info)
+
 app.use('/images', express.static(__dirname + '/images'))
 
 function print(thing){
@@ -274,13 +276,28 @@ function sendContestant(req,res,group, linkThingy, contestant){
         returnVal += `</div>`
         returnVal += `<div id="contestant-data">`
 
-        if(daContestant.competition_name != null) returnVal += `<p>Competition Name: ${daContestant.competition_name}</p>` 
-        if(daContestant.legal_name != null) returnVal += `<p>Legal Name: ${daContestant.legal_name}</p>` 
+        if(daContestant.competition_name != null) returnVal += `<p class="competition-name">Competition Name: ${daContestant.competition_name}</p>` 
+        if (daContestant.competition_name == "Nail") {
+            returnVal += `<script>
+if (Math.floor(Math.random()*500) == 0){
+    document.querySelector(".competition-name").innerText = "Competition Name: Owern";
+    document.title = "owern";
+}
+</script>`
+        }
+        if(daContestant.legal_name != null) returnVal += `<p>Legal Name: ${daContestant.legal_name}</p>`
         if(daContestant.sex != null) returnVal += `<p>Sex: ${daContestant.sex}</p>` 
         if(daContestant.age != null) returnVal += `<p>Age: ${daContestant.age}</p>` 
         if(daContestant.height != null) returnVal += `<p>Height: ${daContestant.height}</p>` 
         if(daContestant.residence != null) returnVal += `<p>Residence: ${daContestant.residence}</p>` 
-        if(daContestant.occupation != null) returnVal += `<p>Occupation: ${daContestant.occupation}</p>` 
+        if(daContestant.occupation != null) returnVal += `<p class="occupation">Occupation: ${daContestant.occupation}</p>`
+        if (daContestant.competition_name == "Scenty") {
+    returnVal += `<script>
+if (Math.floor(Math.random()*500) == 0){
+    document.querySelector(".occupation").innerText = "Occupation: Retail Cashier";
+}
+</script>`
+        }
         if(daContestant.competition_placement != null) returnVal += `<p>Competition Placement: ${daContestant.competition_placement}</p>`
 
         returnVal += `</div>`
@@ -364,6 +381,16 @@ app.get('/contestants/', (req, res) => {
     res.sendFile(path.join(__dirname, '/static/contestants_list.html'));
 })
 
+// SEASON THREE
+
+app.get('/contestants/season_three', (req, res) => {
+    sendGroup(req, res, contestant_info.seasons.season_three, "/season_three")
+})
+
+app.get('/contestants/season_three/:contestant', (req, res) => {
+    sendContestant(req, res, contestant_info.seasons.season_three, "/season_three", req.params.contestant)
+})
+
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/static/homepage.html'));
 })
@@ -377,5 +404,6 @@ app.get('/thesearchengine', (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`Example app listening on port ${port}`);
+    console.log(`http://localhost:${port}`);
 })
