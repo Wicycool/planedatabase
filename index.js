@@ -383,12 +383,16 @@ app.get('/contestants/', (req, res) => {
 
 // SEASON THREE
 
-app.get('/contestants/season_three', (req, res) => {
-    sendGroup(req, res, contestant_info.seasons.season_three, "/season_three")
+app.get('/contestants/season_three/group_one', (req, res) => {
+    sendGroup(req, res, contestant_info.seasons.season_three, "/season_three/group_one")
 })
 
-app.get('/contestants/season_three/:contestant', (req, res) => {
-    sendContestant(req, res, contestant_info.seasons.season_three, "/season_three", req.params.contestant)
+app.get('/contestants/season_three/group_one/:contestant', (req, res) => {
+    sendContestant(req, res, contestant_info.seasons.season_three, "/season_three/group_one", req.params.contestant)
+})
+
+app.get('/contestants/season_three', (req, res) => {
+    res.sendFile(path.join(__dirname, '/static/season_three_list.html'));
 })
 
 app.get('/', (req, res) => {
