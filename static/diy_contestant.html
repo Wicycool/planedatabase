@@ -56,7 +56,7 @@
         #contestant-data {
             display: inline-block;
             vertical-align: baseline;
-            width: 500px;
+            width: 550px;
             height: 560px;
             margin: 10px;
         }
@@ -124,6 +124,7 @@
             min-width: 0;
             resize: none;
             overflow: hidden;
+            white-space: pre-line;
         }
 
         input {
@@ -144,12 +145,15 @@
             border: 2px solid rgba(0, 0, 0, 0.1);
             margin: -2px;
         }
+        #large-editable-area{
+            max-height: 3em;
+        }
 
         #contestant {
             max-width: 1400px;
             margin: auto;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-
+            padding: 10px;
         }
 
         .top {
@@ -219,7 +223,7 @@
             </div>
             <div style="margin: 10px;">
                 <p>Additional Notes:</p>
-                <p><textarea rows="4">-N/A</textarea></p>
+                <p id="large-editable-area"><textarea rows="4">-N/A</textarea></p>
             </div>
         </div>
     </div>
@@ -231,10 +235,12 @@
     <script>
         function saveContestantAsImage(method) {
             thing = document.querySelector("#contestant");
-            thing.style.width = "1280px";
+            thing.style.width = "1260px";
             thing.style.backgroundColor = "#ececec";
             thing.style.boxShadow = "unset";
             document.querySelector(".click-reminder").style.display = "none";
+            textareaTemp = document.querySelector("#large-editable-area textarea").cloneNode(true);
+            document.querySelector("#large-editable-area").innerHTML = textareaTemp.value.replace(/</g, '&lt;').replace(/\n/g, "<br />"); //prevents XSS
 
             daInputs = document.querySelectorAll("input,textarea");
 
@@ -272,6 +278,8 @@
             thing.style.backgroundColor = "initial";
             thing.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.25)";
             document.querySelector(".click-reminder").style.display = "";
+            document.querySelector("#large-editable-area").innerHTML = "";
+            document.querySelector("#large-editable-area").appendChild(textareaTemp);
 
 
             for (let i = 0; i < daInputs.length; i++) {
