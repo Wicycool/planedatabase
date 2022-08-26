@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>planedatabase admin</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>planedatabase admin</h1>
+    <h3>This will update planedatabase locally.</h3>
+    <p>NOTE: somethings WILL break! only changing contestant info is supported.</p>
+    <p></p>
+    <button>Revert changes</button>
+    <button>Update</button><br>
+    <textarea id="json-editor" rows="30" cols="60" name="text" placeholder="Enter text"></textarea>
+
+    <script>
+        axios.get('/raw-data')
+            .then(function(response){
+                console.log(response.data);
+                contestantData = response.data;
+                for (i in Object.keys(contestantData.seasons)) {
+                    console.log(i);
+                }
+                document.querySelector("#json-editor").value = JSON.stringify(response.data, null, 2);
+            }).catch(function(error){
+                alert(error);
+            });
+    </script>
+</body>
+</html>

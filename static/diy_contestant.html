@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LTZV8P2Z7Q"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-LTZV8P2Z7Q');
+    </script>
+
+    <title>Make Your Own Contestant</title>
+    <style>
+        body {
+            font-size: 1.5em;
+            background-color: #ececec;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: blue;
+            font-size: 1.25em;
+        }
+
+        #navigation {
+            text-align: center;
+            padding: 0.25em;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .container p {
+            padding-bottom: 1.2rem;
+        }
+
+        #notice {
+            font-size: 0.5em;
+            background-color: #AAAAAA;
+            font-family: sans-serif;
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        #contestant-data {
+            display: inline-block;
+            vertical-align: baseline;
+            width: 500px;
+            height: 560px;
+            margin: 10px;
+        }
+
+        #contestant-data p {
+            display: block;
+        }
+
+        .image-container {
+            display: inline-block;
+            float: left;
+        }
+
+        .contestant-image {
+            display: inline-block;
+            margin: 10px;
+            margin-top: 20px;
+
+            width: 632px;
+            height: 560px;
+
+            background-position: center;
+            background-size: cover;
+            background-image: url(/images/season_two/group_one/backpack.png);
+        }
+
+        .contestant-image-not-found {
+            display: inline-block;
+
+            margin: 10px;
+            margin-top: 20px;
+
+            width: 316px;
+
+            padding-top: 140px;
+            padding-bottom: 140px;
+            padding-left: 158px;
+            padding-right: 158px;
+
+            background-color: #d4d4d4;
+        }
+
+        /*@media only screen and (max-width: 700px) {
+            .contestant-image {
+                width: calc(100% - 20px);
+            }
+        }*/
+
+        @media only screen and (max-width: 987px) {
+            #contestant-data {
+                height: auto;
+            }
+        }
+
+        input,
+        textarea {
+            display: inline;
+            border: none;
+            background: transparent;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 1em;
+            width: auto;
+            padding: 0;
+            margin: 0;
+            min-width: 0;
+            resize: none;
+            overflow: hidden;
+        }
+
+        input {
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+            margin-bottom: -2px;
+        }
+
+        input.big {
+            width: 300px;
+        }
+
+        input.small {
+            width: 150px;
+        }
+
+        textarea {
+            width: 100%;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            margin: -2px;
+        }
+
+        #contestant {
+            max-width: 1400px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+
+        }
+
+        .top {
+            margin-bottom: 30px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .top p {
+            font-size: 0.75em;
+            padding: 0;
+        }
+
+        .top button{
+            background-color: rgba(0,0,0,0.1);
+            color: black;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 0.75em;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        #preview{
+            width: 300px;
+            border:rgba(0, 0, 0, 0.25) solid;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        #preview-hide{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container top">
+        <h2>www.planedatabase.com: Make Your Own Contestant</h2>
+        <p>This page lets you make your own planedatabase page for your OCs, objects, and more!</p>
+        <p>Nothing is uploaded to any servers. It's all done locally on your computer!</p>
+        <button style="background-color: rgba(55, 175, 75, 0.75); color: white;" onclick="saveContestantAsImage('download')">Save as image</button>
+        <button id="copytoclipboard" onclick="saveContestantAsImage('copy')">Copy to clipboard</button>
+        <button id="preview-show" onclick="saveContestantAsImage('preview')">Show image preview</button><br>
+        <img id="preview">
+        <button id="preview-hide" onclick="hidePreview()" >Hide image preview</button>
+    </div>
+    <div id="contestant">
+        <div id="navigation"><a style="margin-right: 20px">previous</a><a style="margin-left: 20px">next</a></div>
+        <div class="container">
+            <div class="image-container">
+                <div class="contestant-image"></div>
+                <div style=" width: 0; height: 0;position: absolute;  color: white;">
+                    <div class="click-reminder" onclick="uploadImage()" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; cursor: pointer; width: 592px; padding-left: 40px; padding-top: 500px; height: 60px; text-align: left; margin: 10px; position: relative; top: -586px; background-color: rgba(0,0,0,0.25);">Click to upload new image</div>
+                </div>
+            </div>
+
+            <div id="contestant-data">
+                <p>Competition Name: <input type="text" class="big" value="Backpack"></p>
+                <p>Legal Name: <input type="text" class="big" value="Liam Plecak"></p>
+                <p>Sex: <input type="text" class="big" value="M"></p>
+                <p>Age: <input type="text" class="big" value="Adult"></p>
+                <p>Height: <input type="text" class="big" value="5'7"></p>
+                <p>Residence: <input type="text" class="big" value="San Francisco, CA"></p>
+                <p>Occupation: <input type="text" class="big" value="Telemarketer"></p>
+                <p>Competition Placement: <input type="text" class="small" value="12th"></p>
+            </div>
+            <div style="margin: 10px;">
+                <p>Additional Notes:</p>
+                <p><textarea rows="4">-N/A</textarea></p>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; ">
+        <span style="font-size: 0.5em; color:rgba(0, 0, 0, 0.5)">Website made by Wicycool<br><a href="/" style="color:rgba(0, 0, 0, 0.5); font-size: 1em; text-decoration: underline;">Go to www.planedatabase.com</a> - <a href="/about/" style="color:rgba(0, 0, 0, 0.5); font-size: 1em; text-decoration: underline;">About planedatabase</a></span>
+    </div>
+
+
+    <script>
+        function saveContestantAsImage(method) {
+            thing = document.querySelector("#contestant");
+            thing.style.width = "1280px";
+            thing.style.backgroundColor = "#ececec";
+            thing.style.boxShadow = "unset";
+            document.querySelector(".click-reminder").style.display = "none";
+
+            daInputs = document.querySelectorAll("input,textarea");
+
+            for (let i = 0; i < daInputs.length; i++) {
+                daInputs[i].style.border = "none";
+            }
+
+            html2canvas(thing, {
+                windowWidth: "1280px",
+                windowHeight: "720px"
+            }).then(function (canvas) {
+                switch (method){
+                    case "download":
+                        var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
+                        var anchor = document.createElement('a');
+                        anchor.setAttribute('download', 'planedatabase_' + Math.random().toString(36).slice(2) + '.png');
+                        anchor.setAttribute('href', image);
+                        anchor.click();
+                    break;
+                    case "copy":
+                        canvas.toBlob(blob => navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]))
+                    break;
+                    case "preview":
+                        var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
+                        document.querySelector("#preview").src = image;
+                        document.querySelector("#preview").style.display = "block";
+                        document.querySelector("#preview-hide").style.display = "block";
+                        document.querySelector("#preview-show").innerText = "Update image preview";
+                    break;
+                }
+            });
+
+            thing.style.width = "initial";
+            thing.style.height = "initial";
+            thing.style.backgroundColor = "initial";
+            thing.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.25)";
+            document.querySelector(".click-reminder").style.display = "";
+
+
+            for (let i = 0; i < daInputs.length; i++) {
+                daInputs[i].style.border = "";
+            }
+        }
+        function hidePreview(){
+            document.querySelector("#preview").style.display = "none";
+            document.querySelector("#preview-hide").style.display = "none";
+            document.querySelector("#preview-show").innerText = "Show image preview";
+        }
+        if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+            document.querySelector("#copytoclipboard").innerHTML += " <span style='font-size: 10px;'>(Firefox may not be supported)</span>";
+        }
+
+        function uploadImage(){
+            var input = document.createElement('input');
+            input.type = 'file';
+
+            input.onchange = e => {
+                let allowedExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp', 'image/webp'];
+                var file = e.target.files[0];
+
+                if (allowedExtension.indexOf(file.type) > -1) {
+                    reader = new FileReader();
+
+                    
+
+                    reader.addEventListener("load", () => {
+                        // convert image file to base64 string
+                        document.querySelector('.contestant-image').style.backgroundImage = `url(${reader.result})`;
+                    }, false);
+
+                    reader.readAsDataURL(file);
+                } else {
+                    alert('Please upload an image!')
+                }
+            }  
+            input.click();
+        }
+
+    </script>
+</body>
+
+</html>

@@ -221,8 +221,7 @@ function sendContestant(req,res,group, linkThingy, contestant){
             display: inline-block;
             margin: 10px;
             margin-top: 20px;
-
-            width: 632px;"
+            width: 632px;
         }
         .contestant-image-not-found{
             display: inline-block;
@@ -405,6 +404,14 @@ app.get('/about', (req, res) => {
 
 app.get('/thesearchengine', (req, res) => {
     res.sendFile(path.join(__dirname, '/static/thesearchengine.html'));
+})
+
+app.get('/raw-data', (req, res) => {
+    res.sendFile(path.join(__dirname, '/contestant_info.json'));
+})
+
+app.get('/make', (req, res) => {
+    res.sendFile(path.join(__dirname, '/static/diy_contestant.html'));
 })
 
 app.listen(port, () => {
