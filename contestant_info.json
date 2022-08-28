@@ -166,7 +166,7 @@
                         },
                         {
                             "id": "tomato",
-                            "competition_name": "tomato",
+                            "competition_name": "Tomato",
                             "legal_name": "Charlie Howling",
                             "sex": "M",
                             "age": "Baby",
@@ -289,87 +289,91 @@
             }
         },
         "season_three": {
-            "name": "season_three group_one",
-            "contestants": [
-                {
-                    "id": "tomatoey",
-                    "competition_name": "Tomatoey",
-                    "legal_name": "Alice Howling",
-                    "sex": "F",
-                    "age": "Adult",
-                    "height": "4'4",
-                    "residence": "Greenburg, IN",
-                    "occupation": "Flight Attendant",
-                    "additional_notes": "-N/A",
-                    "official": true,
-                    "image": "season_three/tomatoey.png"
-                },
-                {
-                    "id": "melony",
-                    "competition_name": "Melony",
-                    "legal_name": "Garrett Dennis",
-                    "sex": "M",
-                    "age": "Adult",
-                    "height": "5'10",
-                    "residence": "Yakima, WA",
-                    "occupation": "Manager",
-                    "additional_notes": "-N/A",
-                    "official": true,
-                    "image": "season_three/melony.png"
-                },
-                {
-                    "id": "candy_bar",
-                    "competition_name": "Candy Bar",
-                    "legal_name": "Parker Robins",
-                    "sex": "M",
-                    "age": "Adult",
-                    "height": "6'2",
-                    "residence": "Brunswick, GA",
-                    "occupation": "Brand Associate",
-                    "additional_notes": "-N/A",
-                    "official": true,
-                    "image": "season_three/candy_bar.png"
-                },
-                {
-                    "id": "stocking",
-                    "competition_name": "Stocking",
-                    "legal_name": "Charise Lantigne",
-                    "sex": "F",
-                    "age": "Teen",
-                    "height": "5'7",
-                    "residence": "Toledo, OH",
-                    "occupation": "N/A",
-                    "additional_notes": "-N/A",
-                    "official": true,
-                    "image": "season_three/stocking.png"
-                },
-                {
-                    "id": "mustard",
-                    "competition_name": "Mustard",
-                    "legal_name": "Kylie Harding",
-                    "sex": "F",
-                    "age": "Teen",
-                    "height": "5'6",
-                    "residence": "Bridgeport, CT",
-                    "occupation": "Fast Food Worker",
-                    "additional_notes": "-N/A",
-                    "official": true,
-                    "image": "season_three/mustard.png"
-                },
-                {
-                    "id": "nail",
-                    "competition_name": "Nail",
-                    "legal_name": "Owen",
-                    "sex": "M",
-                    "age": "Adult",
-                    "height": "6'5",
-                    "residence": "San Francisco, CA",
-                    "occupation": "Telemarketer",
-                    "additional_notes": "-N/A",
-                    "official": false,
-                    "image": "season_three/nail.png"
+            "groups":{
+                "group_one": {
+                    "name": "season_three group_one",
+                    "contestants": [
+                        {
+                            "id": "tomatoey",
+                            "competition_name": "Tomatoey",
+                            "legal_name": "Alice Howling",
+                            "sex": "F",
+                            "age": "Adult",
+                            "height": "4'4",
+                            "residence": "Greenburg, IN",
+                            "occupation": "Flight Attendant",
+                            "additional_notes": "-N/A",
+                            "official": true,
+                            "image": "season_three/tomatoey.png"
+                        },
+                        {
+                            "id": "melony",
+                            "competition_name": "Melony",
+                            "legal_name": "Garrett Dennis",
+                            "sex": "M",
+                            "age": "Adult",
+                            "height": "5'10",
+                            "residence": "Yakima, WA",
+                            "occupation": "Manager",
+                            "additional_notes": "-N/A",
+                            "official": true,
+                            "image": "season_three/melony.png"
+                        },
+                        {
+                            "id": "candy_bar",
+                            "competition_name": "Candy Bar",
+                            "legal_name": "Parker Robins",
+                            "sex": "M",
+                            "age": "Adult",
+                            "height": "6'2",
+                            "residence": "Brunswick, GA",
+                            "occupation": "Brand Associate",
+                            "additional_notes": "-N/A",
+                            "official": true,
+                            "image": "season_three/candy_bar.png"
+                        },
+                        {
+                            "id": "stocking",
+                            "competition_name": "Stocking",
+                            "legal_name": "Charise Lantigne",
+                            "sex": "F",
+                            "age": "Teen",
+                            "height": "5'7",
+                            "residence": "Toledo, OH",
+                            "occupation": "N/A",
+                            "additional_notes": "-N/A",
+                            "official": true,
+                            "image": "season_three/stocking.png"
+                        },
+                        {
+                            "id": "mustard",
+                            "competition_name": "Mustard",
+                            "legal_name": "Kylie Harding",
+                            "sex": "F",
+                            "age": "Teen",
+                            "height": "5'6",
+                            "residence": "Bridgeport, CT",
+                            "occupation": "Fast Food Worker",
+                            "additional_notes": "-N/A",
+                            "official": true,
+                            "image": "season_three/mustard.png"
+                        },
+                        {
+                            "id": "nail",
+                            "competition_name": "Nail",
+                            "legal_name": "Owen",
+                            "sex": "M",
+                            "age": "Adult",
+                            "height": "6'5",
+                            "residence": "San Francisco, CA",
+                            "occupation": "Telemarketer",
+                            "additional_notes": "-N/A",
+                            "official": false,
+                            "image": "season_three/nail.png"
+                        }
+                    ]
                 }
-            ]
+            }
         }
     }
 }

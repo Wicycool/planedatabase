@@ -1,12 +1,17 @@
-const express = require('express')
-const path = require('path')
-const app = express()
-const port = 3001
 const contestant_info = require('./contestant_info.json')
+const fse = require("fs-extra")
+
+const exportLocation = __dirname + '/export';
 
 print(contestant_info)
 
-app.use('/images', express.static(__dirname + '/images'))
+// Create static export folder
+fse.mkdirSync(exportLocation, {recursive: true});
+console.log("made static export directory");
+
+// Images directory
+fse.cpSync(__dirname + '/images/', exportLocation + '/images/', {recursive: true});
+console.log("copied images");
 
 function print(thing){
     console.log(thing)
@@ -81,7 +86,7 @@ function sendGroup(req,res,group, linkThingy){
     </style>
     </head>
     <body><ul>`
-        for (i in group.contestants){
+        for (let i in group.contestants){
             returnVal+=`<li><a href="/contestants${linkThingy}/${group.contestants[i]["id"].toLowerCase()}">`
             returnVal += `<img src="/images/${group.contestants[i].image}" width="316px" height="280px"><br>`
             returnVal += group.contestants[i]["competition_name"].toLowerCase()
@@ -130,15 +135,15 @@ def command(history,memory):<br>
 
     returnVal += `</body></html>`
 
-    res.status(400)
-    res.send(returnVal)
+    //res.status(400)
+    return(returnVal)
 }
 
 function sendContestant(req,res,group, linkThingy, contestant){
     //checks if contestant exists
     contestantExists = false;
     contestantNum = null;
-    for (i in group.contestants){
+    for (let i in group.contestants){
         if (group.contestants[i]["id"].toLowerCase() == contestant){
             contestantExists = true;
             contestantNum = parseInt(i);
@@ -263,7 +268,7 @@ function sendContestant(req,res,group, linkThingy, contestant){
 
         returnVal += `<div id="container">`
 
-        daContestant = group.contestants[contestantNum]
+        let daContestant = group.contestants[contestantNum]
         
 
         returnVal += `<div id="image-container">`
@@ -320,101 +325,90 @@ if (Math.floor(Math.random()*500) == 0){
             returnVal += `
         </body></html>
         `
-    
-        res.status(400)
-        res.send(returnVal)
+        return(returnVal)
 
     } else{
-        res.status(404)
-        res.send("contestant doesn't exist")
+        console.log("Contestant doesn't exist.");
+        console.log("Contestant id: " + contestant);
+        console.log("Link thingy: " + linkThingy);
+        console.log("Group: ");
+        console.log(group);
     }
 
 }
 
-app.get('/contestants/season_one', (req, res) => {
-    sendGroup(req, res, contestant_info.seasons.season_one, "/season_one")
-})
 
-app.get('/contestants/season_one/:contestant', (req, res) => {
-    sendContestant(req, res, contestant_info.seasons.season_one, "/season_one", req.params.contestant)
-})
 
-app.get('/contestants/season_two/:group', (req, res) => {
-    switch (req.params.group){
-        case "group_one": 
-            sendGroup(req, res, contestant_info.seasons.season_two.groups.group_one, "/season_two/group_one")
-            break;
-        case "group_two": 
-            sendGroup(req, res, contestant_info.seasons.season_two.groups.group_two, "/season_two/group_two")
-            break;
-        case "group_three": 
-            sendGroup(req, res, contestant_info.seasons.season_two.groups.group_three, "/season_two/group_three")
-            break;
-        default:
-            res.send("group doesn't exist")
+for (let i in contestant_info.seasons){
+    fse.mkdirSync(exportLocation + '/contestants/' + i, {recursive: true});
+    console.log("Created " + '/contestants/' + i);
+    if (Object.keys(contestant_info.seasons[i]).includes('groups')){
+        // Only seasons with multiple groups (s2, s3)
+
+        fse.cpSync(__dirname + "/static/" + i + "_list.html", exportLocation + '/contestants/' + i + "/index.html", {recursive: true});
+        console.log("Added static " + i + " list (THIS IS TEMPORARY)");
+
+        
+        for (let daCurrentGroup in contestant_info.seasons[i]["groups"]){
+            // add the group(s) in s2, s3
+            fse.mkdirSync(exportLocation + '/contestants/' + i + "/" + daCurrentGroup, {recursive: true});
+            console.log("Created " + '/contestants/' + i + "/" + daCurrentGroup);
+            
+            fse.writeFileSync(exportLocation + '/contestants/' + i + "/" + daCurrentGroup + "/index.html", sendGroup(null,null,contestant_info.seasons[i]["groups"][daCurrentGroup], "/" + i + "/" + daCurrentGroup));
+            console.log("Created " + '/contestants/' + i + "/" + daCurrentGroup + "/index.html")
+
+            // make each contestant in the group's page
+            for (let daCurrentContestant in contestant_info.seasons[i]["groups"][daCurrentGroup]["contestants"]){
+                fse.mkdirSync(exportLocation + '/contestants/' + i + "/" + daCurrentGroup + "/" + contestant_info.seasons[i]["groups"][daCurrentGroup]["contestants"][daCurrentContestant]["id"], {recursive: true});
+                console.log("Created " + '/contestants/' + i + "/" + daCurrentGroup + "/" + contestant_info.seasons[i]["groups"][daCurrentGroup]["contestants"][daCurrentContestant]["id"])
+
+                fse.writeFileSync(
+                    exportLocation + '/contestants/' + i + "/" + daCurrentGroup + "/" + contestant_info.seasons[i]["groups"][daCurrentGroup]["contestants"][daCurrentContestant]["id"] + "/index.html", 
+                    sendContestant(null,null, contestant_info.seasons[i]["groups"][daCurrentGroup], "/" + i + "/" + daCurrentGroup, contestant_info.seasons[i]["groups"][daCurrentGroup]["contestants"][daCurrentContestant]["id"])
+                );
+                console.log("Created " + '/contestants/' + i + "/" + contestant_info.seasons[i]["groups"][daCurrentGroup]["contestants"][daCurrentContestant]["id"] + "/index.html")
+            }
+        }
+    } else {
+        // Only seasons with NO GROUPS (s1)
+        
+        // make group page
+        fse.writeFileSync(exportLocation + '/contestants/' + i + "/index.html", sendGroup(null,null,contestant_info.seasons[i], "/" + i));
+        console.log("Created " + '/contestants/' + i + "/index.html")
+
+        // make each contestant's page
+        for (let daCurrentContestant in contestant_info.seasons[i]["contestants"]){
+            fse.mkdirSync(exportLocation + '/contestants/' + i + "/" + contestant_info.seasons[i]["contestants"][daCurrentContestant]["id"], {recursive: true});
+            console.log("Created " + '/contestants/' + i + "/" + contestant_info.seasons[i]["contestants"][daCurrentContestant]["id"])
+
+            fse.writeFileSync(
+                exportLocation + '/contestants/' + i + "/" + contestant_info.seasons[i]["contestants"][daCurrentContestant]["id"] + "/index.html", 
+                sendContestant(null,null, contestant_info.seasons[i], "/" + i, contestant_info.seasons[i]["contestants"][daCurrentContestant]["id"])
+            );
+            console.log("Created " + '/contestants/' + i + "/" + contestant_info.seasons[i]["contestants"][daCurrentContestant]["id"] + "/index.html")
+        }
+
     }
-})
+}
 
-app.get('/contestants/season_two/:group/:contestant', (req, res) => {
-    switch (req.params.group){
-        case "group_one": 
-            sendContestant(req, res, contestant_info.seasons.season_two.groups.group_one, "/season_two/group_one", req.params.contestant)
-            break;
-        case "group_two": 
-            sendContestant(req, res, contestant_info.seasons.season_two.groups.group_two, "/season_two/group_two", req.params.contestant)
-            break;
-        case "group_three": 
-            sendContestant(req, res, contestant_info.seasons.season_two.groups.group_three, "/season_two/group_three", req.params.contestant)
-            break;
-        default:
-            res.status(404)
-            res.send("group doesn't exist")
-    }
-})
+fse.cpSync(__dirname + '/static/contestants_list.html', exportLocation + '/contestants/index.html', {recursive: true});
+console.log("Created " + '/index.html');
 
-app.get('/contestants/season_two', (req, res) => {
-    res.sendFile(path.join(__dirname, '/static/season_two_list.html'));
-})
+fse.cpSync(__dirname + '/static/homepage.html', exportLocation + '/index.html', {recursive: true});
+console.log("Created " + '/index.html');
 
-app.get('/contestants/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/static/contestants_list.html'));
-})
+fse.cpSync(__dirname + '/static/about.html', exportLocation + '/about/index.html', {recursive: true});
+console.log("Created " + '/about/index.html');
 
-// SEASON THREE
+fse.cpSync(__dirname + '/static/thesearchengine.html', exportLocation + '/thesearchengine/index.html', {recursive: true});
+console.log("Created " + '/thesearchengine/index.html');
 
-app.get('/contestants/season_three/group_one', (req, res) => {
-    sendGroup(req, res, contestant_info.seasons.season_three, "/season_three/group_one")
-})
+fse.cpSync(__dirname + '/contestant_info.json', exportLocation + '/contestant_info.json', {recursive: true});
+console.log("Created " + '/contestant_info.json');
 
-app.get('/contestants/season_three/group_one/:contestant', (req, res) => {
-    sendContestant(req, res, contestant_info.seasons.season_three, "/season_three/group_one", req.params.contestant)
-})
+fse.cpSync(__dirname + '/static/diy_contestant.html', exportLocation + '/make/index.html', {recursive: true});
+console.log("Created " + '/make/index.html');
 
-app.get('/contestants/season_three', (req, res) => {
-    res.sendFile(path.join(__dirname, '/static/season_three_list.html'));
-})
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/static/homepage.html'));
-})
-
-app.get('/about', (req, res) => {
-    res.sendFile(path.join(__dirname, '/static/about.html'));
-})
-
-app.get('/thesearchengine', (req, res) => {
-    res.sendFile(path.join(__dirname, '/static/thesearchengine.html'));
-})
-
-app.get('/raw-data', (req, res) => {
-    res.sendFile(path.join(__dirname, '/contestant_info.json'));
-})
-
-app.get('/make', (req, res) => {
-    res.sendFile(path.join(__dirname, '/static/diy_contestant.html'));
-})
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-    console.log(`http://localhost:${port}`);
-})
+console.log(
+    `\n\n     Everything has been built! \n     Exports located in ${exportLocation}\n\n`
+)
