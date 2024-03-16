@@ -160,7 +160,7 @@
                             "residence": "Bridgeport, CT",
                             "occupation": "Fast Food Worker",
                             "competition_placement": "N/A",
-                            "additional_notes": "-Thalassophobic",
+                            "additional_notes": "-Thalassophobic<br/>-Rejoined: previously eliminated at 13th place",
                             "official": true,
                             "image": "season_two/group_one/soda bottle.png"
                         },
@@ -186,7 +186,7 @@
                         {
                             "id": "airline_food",
                             "competition_name": "Airline Food",
-                            "competition_placement": "N/A",
+                            "competition_placement": "8th",
                             "additional_notes": "-N/A",
                             "official": true,
                             "image": "image_not_found.png"
@@ -194,7 +194,7 @@
                         {
                             "id": "bassy",
                             "competition_name": "Bassy",
-                            "competition_placement": "11th",
+                            "competition_placement": "12th",
                             "additional_notes": "-N/A",
                             "official": true,
                             "image": "season_two/group_two/bassy.png"
@@ -202,7 +202,7 @@
                         {
                             "id": "contact_lens",
                             "competition_name": "Contact Lens",
-                            "competition_placement": "12th?",
+                            "competition_placement": "unknown",
                             "additional_notes": "-N/A",
                             "official": false,   
                             "image": "image_not_found.png"
@@ -255,7 +255,7 @@
                         {
                             "id": "circle",
                             "competition_name": "Circle",
-                            "competition_placement": "10th?",
+                            "competition_placement": "unknown",
                             "additional_notes": "-N/A",
                             "official": false,
                             "image": "image_not_found.png"
@@ -263,7 +263,7 @@
                         {
                             "id": "folder",
                             "competition_name": "Folder",
-                            "competition_placement": "9th?",
+                            "competition_placement": "unkown",
                             "additional_notes": "-N/A",
                             "official": false,
                             "image": "image_not_found.png"
@@ -361,7 +361,7 @@
                         {
                             "id": "nail",
                             "competition_name": "Nail",
-                            "legal_name": "Owen",
+                            "legal_name": "Owen Thompson",
                             "sex": "M",
                             "age": "Adult",
                             "height": "6'5",
